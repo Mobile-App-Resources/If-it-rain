@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "536145165044",
+    "firebase_url": "https://if-it-rains.firebaseio.com",
+    "project_id": "if-it-rains",
+    "storage_bucket": "if-it-rains.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536145165044:android:bda64217322a322e",
+        "android_client_info": {
+          "package_name": "root.if_it_rains"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536145165044-3sj7gm5chs26cpo35re4v814t2va2ugg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPFPFu6UnhOgn8p6rb4lgaxH2NU7lETDU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
