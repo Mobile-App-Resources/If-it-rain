@@ -1,4 +1,4 @@
-package root.if_it_rains;
+package root.if_it_rains.Manager;
 
 import android.util.Log;
 
