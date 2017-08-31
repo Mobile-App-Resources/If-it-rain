@@ -14,11 +14,11 @@ import android.widget.Toast;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private void showToast(String message){
+    public void showToast(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    private void showSnack(String message, @Nullable String actionName, @Nullable  View.OnClickListener action){
+    public void showSnack(String message, @Nullable String actionName, @Nullable  View.OnClickListener action){
         Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(), message, Snackbar.LENGTH_LONG);
         if (actionName != null){
             snackbar.setAction(actionName, action);
@@ -26,7 +26,7 @@ public class BaseActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-    private void nextActivityWithFinish(Context context, Class cls){
+    public void nextActivityWithFinish(Context context, Class cls){
         Intent intent = new Intent(context, cls);
         startActivity(intent);
         finish();

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="16dp"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="최근 업데이트"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/monthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text1"
+            android:fontFamily="sans-serif-thin"
+            android:text="January"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/monthText"
+            android:fontFamily="sans-serif-thin"
+            android:text="6 th"
+            android:textSize="30dp" />
+
+        <LinearLayout
+            android:id="@+id/dateProgressLayout"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/dateText"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#000000"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/dateText"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/dateProgressLayout"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12 : 00"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12 : 00"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12 : 00"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12 : 00"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12 : 00"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12 : 00"
+                android:textSize="24dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="64dp"
+            android:layout_marginTop="32dp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:fontFamily="sans-serif-thin"
+                android:id="@+id/adressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daegu , Korea"
+                android:textSize="36dp" />
+
+            <TextView
+                android:id="@+id/temText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-thin"
+                android:gravity="center_horizontal|bottom"
+                android:text="26℃"
+                android:textSize="78dp" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="14 C"
+                android:fontFamily="sans-serif-thin"
+                android:textSize="38dp"
+                android:layout_marginLeft="32dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lowTem"/>
+
+            <TextView
+                android:text="32 C"
+                android:layout_above="@id/lowTem"
+                android:textSize="38dp"
+                android:layout_alignRight="@id/lowTem"
+                android:fontFamily="sans-serif-thin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/highTem"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/humidityText"
+                android:text="32 %"
+                android:layout_above="@id/highTem"
+                android:fontFamily="sans-serif-thin"
+                android:layout_alignRight="@id/highTem"
+                android:textSize="24dp"/>
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/whether_up"
+                android:layout_toRightOf="@id/highTem"
+                android:layout_alignTop="@id/highTem"/>
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/whether_down"
+                android:layout_toRightOf="@id/lowTem"
+                android:layout_alignBottom="@id/lowTem"/>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
