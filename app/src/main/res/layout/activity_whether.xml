@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_margin="16dp"
+    android:padding="16dp"
+    android:background="@drawable/back_sun"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -10,29 +11,32 @@
         android:layout_weight="5">
 
         <TextView
+            android:textColor="@color/colorTextWhite"
             android:id="@+id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="sans-serif-light"
             android:text="최근 업데이트"
             android:textSize="18dp" />
 
         <TextView
+            android:textColor="@color/colorTextWhite"
             android:id="@+id/monthText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/text1"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="sans-serif-light"
             android:text="January"
             android:textSize="30dp" />
 
         <TextView
+            android:textColor="@color/colorTextWhite"
             android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/monthText"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="sans-serif-light"
             android:text="6 th"
             android:textSize="30dp" />
 
@@ -43,7 +47,6 @@
             android:layout_below="@id/dateText"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:background="#000000"
             android:orientation="vertical" />
 
         <LinearLayout
@@ -56,6 +59,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:textColor="@color/colorTextWhite"
+                android:id="@+id/timeText1"
+                android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -64,6 +70,9 @@
                 android:textSize="24dp" />
 
             <TextView
+                android:textColor="@color/colorTextWhite"
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/timeText2"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -72,6 +81,9 @@
                 android:textSize="24dp" />
 
             <TextView
+                android:textColor="@color/colorTextWhite"
+                android:id="@+id/timeText3"
+                android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -80,6 +92,9 @@
                 android:textSize="24dp" />
 
             <TextView
+                android:textColor="@color/colorTextWhite"
+                android:id="@+id/timeText4"
+                android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -88,6 +103,9 @@
                 android:textSize="24dp" />
 
             <TextView
+                android:textColor="@color/colorTextWhite"
+                android:id="@+id/timeText5"
+                android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -96,6 +114,9 @@
                 android:textSize="24dp" />
 
             <TextView
+                android:textColor="@color/colorTextWhite"
+                android:id="@+id/timeText6"
+                android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -106,10 +127,11 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:src="@drawable/icon_sun"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="64dp"
+            android:layout_marginRight="32dp"
             android:layout_marginTop="32dp" />
 
 
@@ -123,26 +145,30 @@
         android:layout_weight="2">
 
         <LinearLayout
+            android:paddingLeft="16dp"
             android:id="@+id/layout1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:orientation="vertical"
             android:layout_height="match_parent">
 
             <TextView
-                android:fontFamily="sans-serif-thin"
+                android:textColor="@color/colorTextWhite"
+                android:fontFamily="sans-serif"
                 android:id="@+id/adressText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daegu , Korea"
+                android:text="북구"
                 android:textSize="36dp" />
 
             <TextView
+                android:textColor="@color/colorTextWhite"
                 android:id="@+id/temText"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-thin"
-                android:gravity="center_horizontal|bottom"
+                android:gravity="bottom"
                 android:text="26℃"
                 android:textSize="78dp" />
         </LinearLayout>
@@ -152,16 +178,17 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:textColor="@color/colorTextWhite"
                 android:text="14 C"
                 android:fontFamily="sans-serif-thin"
                 android:textSize="38dp"
-                android:layout_marginLeft="32dp"
                 android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/lowTem"/>
 
             <TextView
+                android:textColor="@color/colorTextWhite"
                 android:text="32 C"
                 android:layout_above="@id/lowTem"
                 android:textSize="38dp"
@@ -172,6 +199,7 @@
                 android:id="@+id/highTem"/>
 
             <TextView
+                android:textColor="@color/colorTextWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/humidityText"

@@ -12,5 +12,5 @@ import root.if_it_rains.Model.WhetherModel;
 public interface ApiInterface {
 
     @GET("/auth/weather")
-    Call<WhetherModel> getWhetherDate(@Query("rati")String lati, @Query("longi")String longi);
+    Call<WhetherModel> getWhetherDate(@Query("lati")String lati, @Query("longi")String longi);
 }
