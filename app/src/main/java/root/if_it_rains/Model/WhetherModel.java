@@ -19,14 +19,25 @@ public class WhetherModel {
     private String tmax;
     @SerializedName("tmin")
     private String tmin;
-    @SerializedName("sky")
-    private Sky sky;
+    @SerializedName("skycode")
+    private int code;
+    @SerializedName("skyname")
+    private String name;
 
-    class Sky{
-        @SerializedName("code")
-        String code;
-        @SerializedName("name")
-        String name;
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUpdate() {
@@ -51,14 +62,6 @@ public class WhetherModel {
 
     public void setHumidity(String humidity) {
         this.humidity = humidity;
-    }
-
-    public WhetherModel.Sky getSky() {
-        return sky;
-    }
-
-    public void setSky(WhetherModel.Sky sky) {
-        this.sky = sky;
     }
 
     public String getTmax() {

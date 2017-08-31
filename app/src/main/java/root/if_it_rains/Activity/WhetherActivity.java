@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,9 +34,15 @@ import root.if_it_rains.Util.BaseActivity;
 public class WhetherActivity extends BaseActivity {
 
     TextView monthText, dateText, adressText, temText, hignTemText, lowTemText, humidityText;
-    LinearLayout progressLayout;
+    LinearLayout progressLayout, rootLayout;
+    ImageView temUpImage, temDownImage;
+    TextView infoText, whetherInfoText;
 
-    TextView timeText1, timeText2, timeText3, timeText4, timeText5, timeText6;
+    TextView timeText1, timeText2, timeText3, timeText4, timeText5, timeText6, whetherText;
+    ImageView whetherImage;
+
+    TextView textViewArr[];
+    TextView timeTextArr[];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +50,15 @@ public class WhetherActivity extends BaseActivity {
         setContentView(R.layout.activity_whether);
 
         progressLayout = (LinearLayout)findViewById(R.id.dateProgressLayout);
+        rootLayout = (LinearLayout)findViewById(R.id.rootLayout);
+
+        whetherText = (TextView)findViewById(R.id.whetherText);
+        whetherImage = (ImageView)findViewById(R.id.whetherImage);
+
+        temUpImage = (ImageView)findViewById(R.id.temUpImage);
+        temDownImage = (ImageView)findViewById(R.id.temDownImage);
+
+        infoText = (TextView)findViewById(R.id.infoText);
 
         monthText = (TextView)findViewById(R.id.monthText);
         dateText = (TextView)findViewById(R.id.dateText);
@@ -59,26 +75,35 @@ public class WhetherActivity extends BaseActivity {
         timeText5 = (TextView)findViewById(R.id.timeText5);
         timeText6 = (TextView)findViewById(R.id.timeText6);
 
+        textViewArr = new TextView[]{monthText, dateText, adressText, temText, lowTemText, hignTemText, humidityText, infoText};
+        timeTextArr = new TextView[]{timeText1, timeText2, timeText3, timeText4, timeText5, timeText6};
+
         getWhetherData();
 
     }
 
-    private TextView setTimeProgress(int time){
-        TextView timeTextArr[] = {timeText1,timeText2,timeText3,timeText4,timeText5,timeText6};
+    private TextView setTimeProgress(int time, int code){
         for(TextView tv : timeTextArr){
             tv.setVisibility(View.INVISIBLE);
         }
 
-        int size = time/4;
+        int size = time/4 + 1;
+        Log.d("xxx", "" + size);
+
         timeTextArr[size - 1].setVisibility(View.VISIBLE);
         View view = new View(this);
         View view2 = new View(this);
-        view.setBackgroundColor(getResources().getColor(R.color.colorWhite));
-        view2.setBackgroundColor(getResources().getColor(R.color.colorArrowWhite));
+        if(code % 2 == 1){
+            view.setBackgroundColor(getResources().getColor(R.color.colorBlack));
+            view2.setBackgroundColor(getResources().getColor(R.color.colorArrowBlack));
+        }else{
+            view.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+            view2.setBackgroundColor(getResources().getColor(R.color.colorArrowWhite));
+        }
         progressLayout.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, size));
         progressLayout.addView(view2, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 6 - size));
 
-        return timeTextArr[time/4 - 1];
+        return timeTextArr[size - 1];
     }
 
     private void getWhetherData(){
@@ -89,7 +114,7 @@ public class WhetherActivity extends BaseActivity {
         DateFommatClass tempDate = setDateFommat(whe.getUpdate());
         monthText.setText(tempDate.month);
         dateText.setText(tempDate.date);
-        setTimeProgress(tempDate.hour).setText(tempDate.time);
+        setTimeProgress(tempDate.hour, whe.getCode()).setText(tempDate.time);
         adressText.setText(whe.getRegion());
         temText.setText(whe.getTc() + "℃");
         hignTemText.setText(whe.getTmax() + "℃");
@@ -97,8 +122,35 @@ public class WhetherActivity extends BaseActivity {
         humidityText.setText(whe.getHumidity() + "%");
     }
 
-    private void setImageToLayout(WhetherModel whe){
+    private void setTextColor(WhetherModel whe){
+        if(whe.getCode() % 2 == 1){
+            for(TextView tv : textViewArr){
+                tv.setTextColor(getResources().getColor(R.color.colorTextBlack));
+            }
+            for(TextView tv : timeTextArr){
+                tv.setTextColor(getResources().getColor(R.color.colorTextBlack));
+            }
+            temUpImage.setImageResource(R.drawable.whether_up_black);
+            temDownImage.setImageResource(R.drawable.whether_down_black);
+        }else{
+            for(TextView tv : textViewArr){
+                tv.setTextColor(getResources().getColor(R.color.colorTextWhite));
+            }
+            for(TextView tv : timeTextArr){
+                tv.setTextColor(getResources().getColor(R.color.colorTextWhite));
+            }
+            temUpImage.setImageResource(R.drawable.whether_up_white);
+            temDownImage.setImageResource(R.drawable.whether_down_white);
+        }
+    }
 
+    private void setImageToLayout(WhetherModel whe){
+        //맑음 0, 흐림 1, 비 2, 눈 3, 낙뢰 4
+        int backWhetherImage[] = {R.drawable.back_sun, R.drawable.back_cloud, R.drawable.back_rain, R.drawable.back_snow, R.drawable.back_thun};
+        int whetherIcon[] = {R.drawable.icon_sun, R.drawable.icon_cloud, R.drawable.icon_rain, R.drawable.icon_snow, R.drawable.icon_thun};
+        whetherImage.setImageResource(whetherIcon[whe.getCode()]);
+        rootLayout.setBackground(getDrawable(backWhetherImage[whe.getCode()]));
+        whetherText.setText(whe.getName());
     }
 
     OnCompleteListener<Location> getLocationFunc = new OnCompleteListener<Location>() {
@@ -115,6 +167,8 @@ public class WhetherActivity extends BaseActivity {
                         Log.d("Xxx", "onResponse: " + "hello");
                         WhetherModel whe = response.body();
                         setDataToLayout(whe);
+                        setImageToLayout(whe);
+                        setTextColor(whe);
                     }
 
                     @Override
