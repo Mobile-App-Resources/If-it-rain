@@ -4,6 +4,8 @@
     android:layout_height="90dp">
     
     <ImageView
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/back_card"
         android:layout_width="0dp"
         android:src="@drawable/icon_food"

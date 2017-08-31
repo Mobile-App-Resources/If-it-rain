@@ -1,5 +1,6 @@
 package root.if_it_rains.Activity;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -36,7 +37,7 @@ public class WhetherActivity extends BaseActivity {
     TextView monthText, dateText, adressText, temText, hignTemText, lowTemText, humidityText;
     LinearLayout progressLayout, rootLayout;
     ImageView temUpImage, temDownImage;
-    TextView infoText, whetherInfoText;
+    TextView infoText;
 
     TextView timeText1, timeText2, timeText3, timeText4, timeText5, timeText6, whetherText;
     ImageView whetherImage;
@@ -52,7 +53,7 @@ public class WhetherActivity extends BaseActivity {
         progressLayout = (LinearLayout)findViewById(R.id.dateProgressLayout);
         rootLayout = (LinearLayout)findViewById(R.id.rootLayout);
 
-        whetherText = (TextView)findViewById(R.id.whetherText);
+        //whetherText = (TextView)findViewById(R.id.whetherText);
         whetherImage = (ImageView)findViewById(R.id.whetherImage);
 
         temUpImage = (ImageView)findViewById(R.id.temUpImage);
@@ -79,6 +80,13 @@ public class WhetherActivity extends BaseActivity {
         timeTextArr = new TextView[]{timeText1, timeText2, timeText3, timeText4, timeText5, timeText6};
 
         getWhetherData();
+
+        Intent intent = getIntent();
+        WhetherModel whe = (WhetherModel)intent.getSerializableExtra("whe");
+
+        setDataToLayout(whe);
+        setImageToLayout(whe);
+        setTextColor(whe);
 
     }
 
@@ -150,7 +158,7 @@ public class WhetherActivity extends BaseActivity {
         int whetherIcon[] = {R.drawable.icon_sun, R.drawable.icon_cloud, R.drawable.icon_rain, R.drawable.icon_snow, R.drawable.icon_thun};
         whetherImage.setImageResource(whetherIcon[whe.getCode()]);
         rootLayout.setBackground(getDrawable(backWhetherImage[whe.getCode()]));
-        whetherText.setText(whe.getName());
+        //whetherText.setText(whe.getName());
     }
 
     OnCompleteListener<Location> getLocationFunc = new OnCompleteListener<Location>() {
@@ -161,7 +169,7 @@ public class WhetherActivity extends BaseActivity {
                 lati += task.getResult().getLatitude();
                 longi += task.getResult().getLongitude();
                 Log.d("location", task.getResult().getLatitude() + "/" + task.getResult().getLongitude());
-                RetrofitClass.getInstance().apiInterface.getWhetherDate(lati,longi).enqueue(new Callback<WhetherModel>() {
+                RetrofitClass.getInstance().apiInterface.getWhetherData(lati,longi).enqueue(new Callback<WhetherModel>() {
                     @Override
                     public void onResponse(Call<WhetherModel> call, Response<WhetherModel> response) {
                         Log.d("Xxx", "onResponse: " + "hello");

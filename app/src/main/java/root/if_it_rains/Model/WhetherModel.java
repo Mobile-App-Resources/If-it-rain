@@ -2,11 +2,14 @@ package root.if_it_rains.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by root1 on 2017. 8. 30..
  */
 
-public class WhetherModel {
+@SuppressWarnings("serial")
+public class WhetherModel implements Serializable{
     @SerializedName("update")
     private String update;
     @SerializedName("region")
@@ -87,4 +90,6 @@ public class WhetherModel {
     public void setTc(String tc) {
         this.tc = tc;
     }
+
+
 }

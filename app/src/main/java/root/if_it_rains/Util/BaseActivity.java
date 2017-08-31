@@ -2,6 +2,7 @@ package root.if_it_rains.Util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,8 +27,9 @@ public class BaseActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-    public void nextActivityWithFinish(Context context, Class cls){
+    public void nextActivityWithFinish(Context context, Class cls, Bundle bundle){
         Intent intent = new Intent(context, cls);
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
     }

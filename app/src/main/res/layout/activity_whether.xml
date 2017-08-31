@@ -136,15 +136,6 @@
             android:layout_marginTop="32dp"
             android:src="@drawable/icon_sun" />
 
-        <TextView
-            android:id="@+id/whetherText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/whetherImage"
-            android:layout_below="@id/whetherImage"
-            android:text="맑음" />
-
-
     </RelativeLayout>
 
     <LinearLayout

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorMainText"
+        android:id="@+id/setButton"
         android:textSize="16dp"
         android:layout_marginBottom="32dp"
         android:layout_alignParentBottom="true"
@@ -43,6 +44,7 @@
         android:hint="기기 코드를 입력하세요"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
+
         android:gravity="center"
         android:textSize="16dp"
         android:layout_marginTop="16dp"
