@@ -26,6 +26,16 @@ public class WhetherModel implements Serializable{
     private int code;
     @SerializedName("skyname")
     private String name;
+    @SerializedName("rain")
+    private int rain;
+
+    public int getRain() {
+        return rain;
+    }
+
+    public void setRain(int rain) {
+        this.rain = rain;
+    }
 
     public int getCode() {
         return code;

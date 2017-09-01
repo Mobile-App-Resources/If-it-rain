@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class MachineModel {
-    @SerializedName("code")
+    @SerializedName("module")
     private String modelCode;
 
     public String getModelCode() {

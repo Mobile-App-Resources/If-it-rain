@@ -8,6 +8,7 @@
         android:id="@+id/imageView"
         android:elevation="3dp"
         android:src="@drawable/icon"
+        android:background="@drawable/back_food_icon"
         android:layout_centerHorizontal="true"
         android:layout_width="100dp"
         android:layout_height="100dp" />
@@ -27,8 +28,8 @@
             <TextView
                 android:id="@+id/categoryText"
                 android:text="음식점"
-                android:layout_margin="8dp"
-                android:textSize="16dp"
+                android:textSize="18dp"
+                android:layout_margin="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -37,8 +38,8 @@
                 android:background="@drawable/back_call_shape"
                 android:id="@+id/callButton"
                 android:layout_margin="8dp"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>

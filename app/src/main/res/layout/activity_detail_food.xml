@@ -12,6 +12,8 @@
 
 
     <RelativeLayout
+        android:elevation="24dp"
+        android:background="#ffffff"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -28,9 +30,10 @@
             android:text="동경 음식점"/>
 
         <TextView
-            android:textColor="#990000ff"
+            android:gravity="center"
+            android:drawableLeft="@drawable/icon_call"
             android:layout_marginTop="4dp"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:layout_marginLeft="16dp"
             android:layout_below="@id/titleText"
             android:id="@+id/subTitleText"

@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 if(response.code() == 204){
                     noData();
                 }else if(response.code() == 200){
-
+                    yesData(response.body().getModelCode());
                 }
             }
 
@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void noData(){
+        codeEdit.setText("");
         setButton.setText("기기 추가하기");
         contentText.setText(getString(R.string.main_info));
         codeEdit.setVisibility(View.VISIBLE);
@@ -75,13 +76,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             if(codeEdit.getText().toString().isEmpty()){
                 showToast("코드를 입력하십시오");
             }else{
-                RetrofitClass.getInstance().apiInterface.setMachineData(codeEdit.getText().toString()).enqueue(new Callback<Void>() {
+                RetrofitClass.getInstance().apiInterface.setMachineData(codeEdit.getText().toString(),FirebaseInstanceId.getInstance().getToken()).enqueue(new Callback<Void>() {
+
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.code() == 204){
                             yesData(codeEdit.getText().toString());
                         }else{
-                            showToast("등록 오류");
+                            showToast("등록 오류" + response.code());
                         }
                     }
                     @Override
@@ -91,11 +93,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 });
             }
         }else{
-            RetrofitClass.getInstance().apiInterface.deleteMachineData().enqueue(new Callback<Void>() {
+            RetrofitClass.getInstance().apiInterface.deleteMachineData(FirebaseInstanceId.getInstance().getToken()).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if(response.code() == 204){
-                        yesData(codeEdit.getText().toString());
+                        noData();
                     }else{
                         showToast("삭제 오류");
                     }

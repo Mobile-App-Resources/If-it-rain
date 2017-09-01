@@ -29,8 +29,8 @@ public class WhetherActivity extends BaseActivity {
     ImageView temUpImage, temDownImage;
     TextView infoText;
 
-    TextView timeText1, timeText2, timeText3, timeText4, timeText5, timeText6, whetherText;
-    ImageView whetherImage;
+    TextView timeText1, timeText2, timeText3, timeText4, timeText5, timeText6, umbText;
+    ImageView whetherImage, umbImage;
 
     TextView textViewArr[];
     TextView timeTextArr[];
@@ -43,7 +43,9 @@ public class WhetherActivity extends BaseActivity {
         progressLayout = (LinearLayout)findViewById(R.id.dateProgressLayout);
         rootLayout = (LinearLayout)findViewById(R.id.rootLayout);
 
-        //whetherText = (TextView)findViewById(R.id.whetherText);
+        umbText = (TextView)findViewById(R.id.umbText);
+        umbImage = (ImageView)findViewById(R.id.umbImage);
+
         whetherImage = (ImageView)findViewById(R.id.whetherImage);
 
         temUpImage = (ImageView)findViewById(R.id.temUpImage);
@@ -115,6 +117,14 @@ public class WhetherActivity extends BaseActivity {
         hignTemText.setText(whe.getTmax() + "℃");
         lowTemText.setText(whe.getTmin() + "℃");
         humidityText.setText(whe.getHumidity() + "%");
+        int rain = whe.getRain();
+        if(rain >= 50){
+            umbText.setVisibility(View.GONE);
+            umbImage.setVisibility(View.GONE);
+        }else{
+            umbText.setText(rain + "%");
+        }
+
     }
 
     private void setTextColor(WhetherModel whe){

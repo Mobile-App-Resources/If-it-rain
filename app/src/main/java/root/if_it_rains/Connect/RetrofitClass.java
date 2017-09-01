@@ -1,29 +1,36 @@
 package root.if_it_rains.Connect;
 
+        import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by root1 on 2017. 8. 30..
+ * Created by geni on 2017. 8. 31..
  */
 
 public class RetrofitClass {
-
-    private static final RetrofitClass ourInstance = new RetrofitClass();
-
-    public static RetrofitClass getInstance() {
-        return ourInstance;
-    }
-
-    private String url = "http://192.168.1.88:8027";
-
-
-    public ApiInterface apiInterface;
+    private static RetrofitClass retrofitClass = new RetrofitClass();
 
     private Retrofit retrofit;
 
-    private RetrofitClass() {
-        retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
+    public ApiInterface apiInterface;
+
+    private RetrofitClass(){
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://52.78.60.215:8027")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
+
         apiInterface = retrofit.create(ApiInterface.class);
+    }
+
+    public static RetrofitClass getInstance() {
+        return retrofitClass;
     }
 }
