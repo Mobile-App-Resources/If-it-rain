@@ -39,6 +39,7 @@
         android:layout_height="150dp" />
 
     <EditText
+        android:id="@+id/codeEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="기기 코드를 입력하세요"

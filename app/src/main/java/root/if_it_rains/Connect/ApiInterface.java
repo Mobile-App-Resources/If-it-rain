@@ -17,4 +17,10 @@ public interface ApiInterface {
 
     @GET("/auth/open")
     Call<MachineModel> getMachineData(@Query("token")String token);
+
+    @GET("/auth/add")
+    Call<Void> setMachineData(@Query("code")String code);
+
+    @GET("/auth/delete")
+    Call<Void> deleteMachineData();
 }

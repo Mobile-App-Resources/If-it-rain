@@ -1,9 +1,7 @@
 package root.if_it_rains.Activity;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -12,18 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import root.if_it_rains.Connect.RetrofitClass;
-import root.if_it_rains.Manager.LocationManager;
 import root.if_it_rains.Model.WhetherModel;
 import root.if_it_rains.R;
 import root.if_it_rains.Util.BaseActivity;
@@ -79,8 +69,6 @@ public class WhetherActivity extends BaseActivity {
         textViewArr = new TextView[]{monthText, dateText, adressText, temText, lowTemText, hignTemText, humidityText, infoText};
         timeTextArr = new TextView[]{timeText1, timeText2, timeText3, timeText4, timeText5, timeText6};
 
-        getWhetherData();
-
         Intent intent = getIntent();
         WhetherModel whe = (WhetherModel)intent.getSerializableExtra("whe");
 
@@ -95,10 +83,13 @@ public class WhetherActivity extends BaseActivity {
             tv.setVisibility(View.INVISIBLE);
         }
 
+        Log.d("xxx", "setTimeProgress: " + time);
+
         int size = time/4 + 1;
         Log.d("xxx", "" + size);
 
         timeTextArr[size - 1].setVisibility(View.VISIBLE);
+
         View view = new View(this);
         View view2 = new View(this);
         if(code % 2 == 1){
@@ -108,14 +99,10 @@ public class WhetherActivity extends BaseActivity {
             view.setBackgroundColor(getResources().getColor(R.color.colorWhite));
             view2.setBackgroundColor(getResources().getColor(R.color.colorArrowWhite));
         }
+
         progressLayout.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, size));
         progressLayout.addView(view2, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 6 - size));
-
         return timeTextArr[size - 1];
-    }
-
-    private void getWhetherData(){
-        LocationManager.getInstance().getCurrentLocation(this, getLocationFunc);
     }
 
     private void setDataToLayout(WhetherModel whe){
@@ -161,41 +148,13 @@ public class WhetherActivity extends BaseActivity {
         //whetherText.setText(whe.getName());
     }
 
-    OnCompleteListener<Location> getLocationFunc = new OnCompleteListener<Location>() {
-        @Override
-        public void onComplete(@NonNull Task<Location> task) {
-            if(task.isSuccessful() && task.getResult() != null){
-                String lati = "", longi = "";
-                lati += task.getResult().getLatitude();
-                longi += task.getResult().getLongitude();
-                Log.d("location", task.getResult().getLatitude() + "/" + task.getResult().getLongitude());
-                RetrofitClass.getInstance().apiInterface.getWhetherData(lati,longi).enqueue(new Callback<WhetherModel>() {
-                    @Override
-                    public void onResponse(Call<WhetherModel> call, Response<WhetherModel> response) {
-                        Log.d("Xxx", "onResponse: " + "hello");
-                        WhetherModel whe = response.body();
-                        setDataToLayout(whe);
-                        setImageToLayout(whe);
-                        setTextColor(whe);
-                    }
-
-                    @Override
-                    public void onFailure(Call<WhetherModel> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
-            }else{
-                Log.d("locationExeption", task.getException().getMessage());
-            }
-        }
-    };
-
     private DateFommatClass setDateFommat(String date){
         final String monthStrArr[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
         DateFommatClass dateFommatClass = new DateFommatClass();
         SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         try {
             Date dateData = sm.parse(date);
+            Log.d("xxx", "setDateFommat: " + date);
             dateFommatClass.month = monthStrArr[dateData.getMonth() - 1];
             dateFommatClass.date = dateData.getDate() + "th";
             dateFommatClass.time = dateData.getHours() + " : 00";
