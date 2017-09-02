@@ -1,12 +1,15 @@
 package root.if_it_rains.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import root.if_it_rains.Manager.TTSManager;
+import root.if_it_rains.Model.PoemModel;
 import root.if_it_rains.R;
 import root.if_it_rains.Util.BaseActivity;
 
@@ -17,30 +20,32 @@ import root.if_it_rains.Util.BaseActivity;
 public class PoemActivity extends BaseActivity {
 
     TTSManager ttsManager;
-    Button button;
+    ImageButton speakButton;
+    TextView titleText, contentText, writerText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poem);
-        button = (Button)findViewById(R.id.button);
-        ttsManager = new TTSManager(getApplicationContext());
+        Intent intent = getIntent();
+        final PoemModel poemModel = (PoemModel) intent.getSerializableExtra("data");
 
-        button.setOnClickListener(new View.OnClickListener() {
+        titleText = (TextView)findViewById(R.id.titleText);
+        writerText = (TextView)findViewById(R.id.writerText);
+        contentText = (TextView)findViewById(R.id.contentText);
+        speakButton = (ImageButton)findViewById(R.id.speakButton);
+
+        titleText.setText(poemModel.getTitle());
+        contentText.setText(poemModel.getContent());
+        writerText.setText(poemModel.getWriter());
+
+        contentText.setMovementMethod(new ScrollingMovementMethod());
+
+        ttsManager = new TTSManager(this);
+        speakButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ttsManager.tts.speak("내를 건너서 숲으로\n" +
-                        "고개를 넘어서 마을로\n" +
-                        "\n" +
-                        "어제도 가고 오늘도 갈\n" +
-                        "나의 새로운 길\n" +
-                        "민들레가 피고 까치가 날고\n" +
-                        "아저씨가 지나고 바람이 일고\n" +
-                        "\n" +
-                        "나의 길은 언제나 새로운 길\n" +
-                        "오늘도.....내일도.....\n" +
-                        "내를 건너서 숲으로\n" +
-                        "고개를 넘어서 마을로", TextToSpeech.QUEUE_FLUSH, null);
+                ttsManager.readTTS(poemModel.getContent());
             }
         });
     }

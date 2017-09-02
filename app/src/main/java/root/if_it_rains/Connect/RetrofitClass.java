@@ -22,7 +22,7 @@ public class RetrofitClass {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://52.78.60.215:8027")
+                .baseUrl("http://13.124.230.198:8027")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

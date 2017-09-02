@@ -16,8 +16,9 @@
         android:layout_marginBottom="32dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:text="기기추가하기"/>
+        android:padding="4dp"
+        android:background="@drawable/back_main_button"
+        android:text="기기 추가하기"/>
 
     <TextView
         android:id="@+id/contentText"
@@ -35,7 +36,7 @@
         android:layout_below="@id/contentText"
         android:layout_width="150dp"
         android:padding="8dp"
-        android:src="@drawable/icon"
+        android:src="@drawable/main_icon"
         android:layout_height="150dp" />
 
     <EditText
@@ -45,7 +46,6 @@
         android:hint="기기 코드를 입력하세요"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-
         android:gravity="center"
         android:textSize="16dp"
         android:layout_marginTop="16dp"

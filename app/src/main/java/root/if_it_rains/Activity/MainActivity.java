@@ -62,12 +62,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         setButton.setText("기기 추가하기");
         contentText.setText(getString(R.string.main_info));
         codeEdit.setVisibility(View.VISIBLE);
+        imageView.setBackgroundResource(R.drawable.main_image_shape);
     }
 
     private void yesData(String code){
         setButton.setText("기기 삭제하기");
         contentText.setText(code);
         codeEdit.setVisibility(View.GONE);
+        imageView.setBackgroundResource(R.drawable.main_image_shape_green);
     }
 
     @Override

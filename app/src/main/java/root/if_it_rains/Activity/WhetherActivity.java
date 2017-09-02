@@ -119,11 +119,13 @@ public class WhetherActivity extends BaseActivity {
         humidityText.setText(whe.getHumidity() + "%");
         int rain = whe.getRain();
         if(rain >= 50){
-            umbText.setVisibility(View.GONE);
-            umbImage.setVisibility(View.GONE);
+            umbImage.setScaleX(1);
+            umbImage.setScaleY(1);
         }else{
-            umbText.setText(rain + "%");
+            umbImage.setScaleX(0.5f);
+            umbImage.setScaleY(0.5f);
         }
+        umbText.setText(rain + "%");
 
     }
 

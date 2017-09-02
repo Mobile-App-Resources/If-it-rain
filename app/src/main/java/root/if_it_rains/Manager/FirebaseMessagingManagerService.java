@@ -16,11 +16,13 @@ import com.google.gson.JsonElement;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import root.if_it_rains.Activity.InfomationActivity;
+import root.if_it_rains.Activity.WhetherBeforeActivity;
 import root.if_it_rains.Connect.RetrofitClass;
 import root.if_it_rains.Model.FoodModel;
 import root.if_it_rains.Model.ListForBundle;
@@ -35,9 +37,16 @@ public class FirebaseMessagingManagerService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        Log.d("xxx", "onMessageReceived: " + remoteMessage.getNotification().getBody());
-
-        setInfoData();
+        //Log.d("xxx", "onMessageReceived: " + remoteMessage.getNotification().getBody());
+        Log.d("xxx", "onMessageReceived: " + remoteMessage.getData());
+        Map<String, String> map = remoteMessage.getData();
+        Log.d("xxx", "onMessageReceived: " + map.get("my_key"));
+        if(map.get("my_key").equals("door")){
+            Intent intent = new Intent(this, WhetherBeforeActivity.class);
+            startActivity(intent);
+        }else{
+            setInfoData();
+        }
     }
 
     private void setInfoData(){

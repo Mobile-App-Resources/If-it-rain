@@ -124,17 +124,17 @@ class InfoCardFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         if(isFood){
-            Intent intent = new Intent(getContext(), DetailFoodActivity.class);
+            //Intent intent = new Intent(getContext(), DetailFoodActivity.class);
+            //Bundle bundle = new Bundle();
+            //bundle.putSerializable("data", (FoodModel)object);
+            //intent.putExtras(bundle);
+            //startActivity(intent);
+        }else{
+            Intent intent = new Intent(getContext(), PoemActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("data", (FoodModel)object);
+            bundle.putSerializable("data", (PoemModel)object);
             intent.putExtras(bundle);
             startActivity(intent);
-        }else{
-//                Intent intent = new Intent(InfomationActivity.this, DetailFoodActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("data", (FoodModel)object);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
         }
     }
 }
